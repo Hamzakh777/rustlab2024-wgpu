@@ -26,13 +26,13 @@ These resources may help you with your tasks:
 
 // two triangles (not yet) covering the screen
 const positions: array<vec2<f32>, 6> = array<vec2<f32>, 6>(
-    vec2<f32>(-0.5, -0.7), // bottom left
-    vec2<f32>(0.7, -0.7), // bottom right
-    vec2<f32>(0.7, 0.5), // top right
+    vec2<f32>(-1, -1), // bottom left
+    vec2<f32>(1, -1), // bottom right
+    vec2<f32>(1, 1), // top right
 
-    vec2<f32>(0.7, 0.8), // top right
-    vec2<f32>(-0.7, 0.6), // top left
-    vec2<f32>(-0.9, -0.6), // bottom left
+    vec2<f32>(1, 1), // top right
+    vec2<f32>(-1, 1), // top left
+    vec2<f32>(-1, -1), // bottom left
 );
 
 @vertex
@@ -61,5 +61,5 @@ fn fs_main(
     @builtin(position) position: vec4<f32>
 ) -> @location(0) vec4<f32> {
     // We return a color value in RGBA format, where every component ranges from 0.0 to 1.0.
-    return vec4<f32>(1.0, 1.0, 1.0, 1.0);
+    return vec4<f32>(position.x / 1280, position.y / 720, 1, 1.0);
 }

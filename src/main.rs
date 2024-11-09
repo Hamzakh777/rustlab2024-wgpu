@@ -146,7 +146,7 @@ impl ApplicationHandler<UserEvent> for ApplicationWindow {
         }
 
         match event {
-            WindowEvent::Resized(size) => app.resize(size.width, size.height),
+            WindowEvent::Resized(size) => app.resize(&window, size.width, size.height),
             WindowEvent::CloseRequested => {
                 self.close_requested = true;
             }
@@ -154,7 +154,7 @@ impl ApplicationHandler<UserEvent> for ApplicationWindow {
                 if let Err(e) = app.render(&window) {
                     if e == wgpu::SurfaceError::Outdated {
                         let size = window.inner_size();
-                        app.resize(size.width, size.height);
+                        app.resize(&window, size.width, size.height);
                     } else {
                         panic!("{}", e);
                     }
